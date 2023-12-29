@@ -5,6 +5,7 @@ import com.zxm.community.community.domain.dto.HjyCommunityDto;
 import com.zxm.community.community.mapper.HjyCommunityMapper;
 import com.zxm.community.community.service.HjyCommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * @Description: com.zxm.community.community.service.impl
  * @version: 1.0
  */
+@Component
 public class HjyCommunityServiceImpl implements HjyCommunityService {
 
     @Autowired
@@ -22,6 +24,6 @@ public class HjyCommunityServiceImpl implements HjyCommunityService {
 
     @Override
     public List<HjyCommunityDto> queryList(HjyCommunity hjyCommunity) {
-        return null;
+        return hjyCommunityMapper.queryList(hjyCommunity);
     }
 }

@@ -1,4 +1,4 @@
-package com.zxm.community.common.exception;
+package com.zxm.community.common.core.exception;
 
 /**
  * 基础异常类

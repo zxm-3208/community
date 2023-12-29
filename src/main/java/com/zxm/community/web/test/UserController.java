@@ -1,8 +1,7 @@
 package com.zxm.community.web.test;
 
 import com.zxm.community.common.core.domain.BaseResponse;
-import com.zxm.community.common.exception.BaseException;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
+import com.zxm.community.common.core.exception.BaseException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;

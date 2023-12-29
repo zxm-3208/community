@@ -1,9 +1,8 @@
-package com.zxm.community.common.exception;
+package com.zxm.community.common.core.exception;
 
 import com.zxm.community.common.core.domain.BaseResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**

@@ -15,21 +15,20 @@ import java.util.List;
  */
 public interface HjyCommunityMapper extends BaseMapper<HjyCommunity> {
     @Select("<script>SELECT\n" +
-            "\t*,\n" +
-            "\ts1.`name` AS communityProvinceName,\n" +
-            "\ts2.`name` AS communityCityName,\n" +
-            "\ts3.`name` AS communityTownName\n" +
+            "   *,\n" +
+            "   s1.`name` AS communityProvinceName,\n" +
+            "   s2.`name` AS communityCityName,\n" +
+            "   s3.`name` AS communityTownName\n" +
             "FROM hjy_community hc\n" +
-            "\tLEFT JOIN sys_area s1 ON hc.`community_province_code` = s1.`code`\n" +
-            "\tLEFT JOIN sys_area s2 ON hc.`community_city_code` = s2.`code`\n" +
-            "\tLEFT JOIN sys_area s3 ON hc.`community_town_code` = s3.`code`\n" +
+            "LEFT JOIN sys_area s1 ON hc.`community_province_code` = s1.`code`\n" +
+            "LEFT JOIN sys_area s2 ON hc.`community_city_code` = s2.`code`\n" +
+            "LEFT JOIN sys_area s3 ON hc.`community_town_code` = s3.`code`\n" +
             "<where> " +
             "<if test=\"communityName != null and communityName != ''\">" +
             "hc.`community_name` LIKE CONCAT('%',#{communityName},'%') " +
             "</if>" +
-            "AND " +
             "<if test=\"communityCode != null and communityCode != ''\">" +
-            "hc.`community_code` = #{communityCode};" +
+            "And hc.`community_code` = #{communityCode}" +
             "</if>" +
             "</where>" +
             "</script>")
