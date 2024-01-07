@@ -3,6 +3,7 @@ package com.zxm.community.community.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zxm.community.community.domain.HjyCommunity;
 import com.zxm.community.community.domain.dto.HjyCommunityDto;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;

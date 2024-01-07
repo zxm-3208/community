@@ -22,4 +22,43 @@ public interface HjyCommunityService {
     */
     List<HjyCommunityDto> queryList(HjyCommunity hjyCommunity);
 
+    /**
+     * @description: 新增小区
+     * @param hjyCommunity
+     * @return: int
+     * @throws:
+     * @author: zxm
+     * @time: 2024/1/6 17:43
+    */
+    int inserHjyCommunity(HjyCommunity hjyCommunity);
+
+    /**
+     * @description: 根据id获取小区详情
+     * @param communityId
+     * @return: HjyCommunity
+     * @throws:
+     * @author: zxm
+     * @time: 2024/1/7 9:25
+    */
+    HjyCommunity selectHjyCommunityById(Long communityId);
+
+    /**
+     * @description: 修改小区
+     * @param hjyCommunity
+     * @return: int
+     * @throws:
+     * @author: zxm
+     * @time: 2024/1/7 9:37
+    */
+    int updateHjyCommunity(HjyCommunity hjyCommunity);
+
+    /**
+     * @description: 删除操作
+     * @param communityIds
+     * @return: int
+     * @throws:
+     * @author: zxm
+     * @time: 2024/1/7 10:30
+    */
+    int deleteHjyCommunity(Long[] communityIds);
 }

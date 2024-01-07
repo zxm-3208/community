@@ -12,6 +12,7 @@ import com.zxm.community.common.core.domain.BaseEntity;
  * @Description: 小区对象
  * @version: 1.0
  */
+
 public class HjyCommunity extends BaseEntity{
     private static final long serialVersionUID = -339699912531441903L;
 
@@ -52,12 +53,12 @@ public class HjyCommunity extends BaseEntity{
     /**
      * 经度
      */
-    private String longitude;
+    private String communityLongitude;
 
     /**
      * 纬度
      */
-    private String latitude;
+    private String communityLatitude;
 
     /**
      * 物业ID
@@ -127,20 +128,20 @@ public class HjyCommunity extends BaseEntity{
         this.communityDetailedAddress = communityDetailedAddress;
     }
 
-    public String getLongitude() {
-        return longitude;
+    public String getCommunityLongitude() {
+        return communityLongitude;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setCommunityLongitude(String communityLongitude) {
+        this.communityLongitude = communityLongitude;
     }
 
-    public String getLatitude() {
-        return latitude;
+    public String getCommunityLatitude() {
+        return communityLatitude;
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+    public void setCommunityLatitude(String communityLatitude) {
+        this.communityLatitude = communityLatitude;
     }
 
     public Long getDeptId() {

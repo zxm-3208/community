@@ -3,6 +3,7 @@ package com.zxm.community.common.core.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zxm.community.common.constant.HttpStatus;
+import com.zxm.community.common.core.domain.BaseResponse;
 import com.zxm.community.common.core.page.PageDomain;
 import com.zxm.community.common.core.page.PageResult;
 import com.zxm.community.common.utils.ServletUtils;
@@ -77,5 +78,15 @@ public class BaseController {
         return pageResult;
     }
 
-
+    /**
+     * @description: 响应返回结果 （针对增删改 操作）
+     * @param rows  受影响的行数
+     * @return: BaseResponse
+     * @throws:
+     * @author: zxm
+     * @time: 2024/1/6 17:51
+    */
+    protected BaseResponse toAjax(int rows){
+        return rows > 0? BaseResponse.success(rows): BaseResponse.fail("操作失败");
+    }
 }
