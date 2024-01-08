@@ -2,6 +2,7 @@ package com.zxm.community.community.service;
 
 import com.zxm.community.community.domain.HjyCommunity;
 import com.zxm.community.community.domain.dto.HjyCommunityDto;
+import com.zxm.community.community.domain.vo.HjyCommunityVo;
 
 import java.util.List;
 
@@ -61,4 +62,15 @@ public interface HjyCommunityService {
      * @time: 2024/1/7 10:30
     */
     int deleteHjyCommunity(Long[] communityIds);
+
+    /**
+     * @description: 获取小区下拉列表
+     * @param hjyCommunity
+     * @return: List<HjyCommunityVo>
+     * @throws:
+     * @author: zxm
+     * @time: 2024/1/8 18:50
+    */
+    List<HjyCommunityVo> queryPullDown(HjyCommunity hjyCommunity);
+
 }

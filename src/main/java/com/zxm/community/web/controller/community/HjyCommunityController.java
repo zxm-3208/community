@@ -9,7 +9,9 @@ import com.zxm.community.common.core.page.PageResult;
 import com.zxm.community.common.utils.ServletUtils;
 import com.zxm.community.community.domain.HjyCommunity;
 import com.zxm.community.community.domain.dto.HjyCommunityDto;
+import com.zxm.community.community.domain.vo.HjyCommunityVo;
 import com.zxm.community.community.service.HjyCommunityService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/community")
+@Slf4j
 public class HjyCommunityController extends BaseController {
     @Autowired
     private HjyCommunityService hjyCommunityService;
@@ -94,5 +97,30 @@ public class HjyCommunityController extends BaseController {
     @DeleteMapping("/{communityIds}")
     public BaseResponse delete(@PathVariable Long[] communityIds){
         return toAjax(hjyCommunityService.deleteHjyCommunity(communityIds));
+    }
+
+    /**
+     * @description: 小区下拉列表展示
+     * @param hjyCommunity
+     * @return: BaseResponse
+     * @throws:
+     * @author: zxm
+     * @time: 2024/1/8 19:05
+    */
+    @GetMapping("/queryPullDown")
+    public BaseResponse queryPullDown(HjyCommunity hjyCommunity){
+
+        // 打印入参日志
+        log.info("log() called with parameters => [hjycommunity = {}]", hjyCommunity);
+
+        List<HjyCommunityVo> voList = null;
+        try {
+            voList = hjyCommunityService.queryPullDown(hjyCommunity);
+        } catch (Exception e){
+            log.warn("获取小区下拉列表失败！",e);
+        }
+        // 打印日志，返回结果
+        log.info("log() returned: {}", voList);
+        return BaseResponse.success(voList);
     }
 }

@@ -1,7 +1,10 @@
 package com.zxm.community.community.service.impl;
 
+import com.zxm.community.common.utils.OrikaUtils;
 import com.zxm.community.community.domain.HjyCommunity;
 import com.zxm.community.community.domain.dto.HjyCommunityDto;
+import com.zxm.community.community.domain.dto.HjyCommunityExcelDto;
+import com.zxm.community.community.domain.vo.HjyCommunityVo;
 import com.zxm.community.community.mapper.HjyCommunityMapper;
 import com.zxm.community.community.service.HjyCommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Auther: zxm
@@ -49,5 +53,19 @@ public class HjyCommunityServiceImpl implements HjyCommunityService {
     @Override
     public int deleteHjyCommunity(Long[] communityIds) {
         return hjyCommunityMapper.deleteBatchIds(Arrays.asList(communityIds));
+    }
+
+    @Override
+    public List<HjyCommunityVo> queryPullDown(HjyCommunity hjyCommunity) {
+        List<HjyCommunityDto> dtolist = hjyCommunityMapper.queryList(hjyCommunity);
+
+        //对象拷贝
+        List<HjyCommunityVo> voList = dtolist.stream().map(dto -> {
+            //使用orik完成对象拷贝
+            HjyCommunityVo communityVo = OrikaUtils.convert(dto, HjyCommunityVo.class);
+            return communityVo;
+        }).collect(Collectors.toList());
+
+        return voList;
     }
 }
