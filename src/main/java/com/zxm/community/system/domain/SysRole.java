@@ -3,6 +3,7 @@ package com.zxm.community.system.domain;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.zxm.community.common.core.domain.BaseEntity;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -13,6 +14,7 @@ import java.util.Arrays;
  * @author spikeCong
  * @date 2023/5/9
  **/
+@Component(value = "SysRole")
 public class SysRole extends BaseEntity {
 
     private static final long serialVersionUID = 1L;

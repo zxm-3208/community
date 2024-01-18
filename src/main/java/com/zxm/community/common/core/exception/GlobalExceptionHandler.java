@@ -22,4 +22,17 @@ public class GlobalExceptionHandler {
         return BaseResponse.fail(e.getDefaultMessage());
     }
 
+    /**
+     * @description: 业务异常处理
+     * @param e
+     * @return: BaseResponse
+     * @throws: 
+     * @author: zxm
+     * @time: 2024/1/18 15:32
+    */
+    @ExceptionHandler(CustomException.class)
+    public BaseResponse businessException(CustomException e){
+        return BaseResponse.fail(Integer.toString(e.getCode()), e.getMsg(), e.isSuccess());
+    }
+
 }

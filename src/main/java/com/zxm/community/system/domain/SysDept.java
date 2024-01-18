@@ -1,6 +1,8 @@
 package com.zxm.community.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.zxm.community.common.core.domain.BaseEntity;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,11 +15,13 @@ import java.util.List;
  * @author makejava
  * @since 2024-01-07 11:00:56
  */
+@Component(value = "SysDept")
 public class SysDept extends BaseEntity{
     private static final long serialVersionUID = 894927562966462429L;
 /**
      * 部门id
      */
+    @TableId
     private Long deptId;
 /**
      * 父部门id

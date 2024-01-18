@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zxm.community.common.core.domain.BaseEntity;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -18,6 +19,7 @@ import java.util.List;
  * @author spikeCong
  * @date 2023/5/3
  **/
+@Component(value = "SysUser")
 public class SysUser extends BaseEntity
 {
     private static final long serialVersionUID = 1L;

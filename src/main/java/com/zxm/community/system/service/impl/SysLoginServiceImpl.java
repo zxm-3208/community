@@ -2,18 +2,17 @@ package com.zxm.community.system.service.impl;
 
 import com.zxm.community.common.constant.Constants;
 import com.zxm.community.common.core.exception.BaseException;
+import com.zxm.community.common.core.exception.UserPasswordNotMatchException;
 import com.zxm.community.common.utils.RedisCache;
-import com.zxm.community.framework.security.CaptchaNotMatchException;
+import com.zxm.community.common.core.exception.CaptchaNotMatchException;
 import com.zxm.community.system.domain.LoginUser;
 import com.zxm.community.system.service.SysLoginService;
-import com.zxm.community.system.service.SysUserService;
 import com.zxm.community.system.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-
-import javax.naming.CannotProceedException;
+import org.springframework.stereotype.Service;
 
 /**
  * @Auther: zxm
@@ -21,6 +20,7 @@ import javax.naming.CannotProceedException;
  * @Description: com.zxm.community.system.service.impl
  * @version: 1.0
  */
+@Service
 public class SysLoginServiceImpl implements SysLoginService {
 
     @Autowired
@@ -53,8 +53,8 @@ public class SysLoginServiceImpl implements SysLoginService {
         String captcha = redisCache.getCacheObject(key);
         redisCache.deleteObject(key);
 
-        if(captcha == null || code.equalsIgnoreCase(captcha)){
-            throw new CaptchaNotMatchException("验证码错误！");
+        if(captcha == null || !code.equalsIgnoreCase(captcha)){
+            throw new CaptchaNotMatchException();
         }
 
         /**
@@ -62,9 +62,9 @@ public class SysLoginServiceImpl implements SysLoginService {
          */
         Authentication authenticate = null;
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         }catch(Exception e){
-            throw new BaseException("用户不存在或者密码错误！");
+            throw new UserPasswordNotMatchException();
         }
         
         /**

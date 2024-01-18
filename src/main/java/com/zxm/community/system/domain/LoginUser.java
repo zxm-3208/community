@@ -15,16 +15,24 @@ import java.util.Collection;
 public class LoginUser implements UserDetails {
 
     /**
-     * @description: 当前用户的唯一标识
-     * @param null
-     * @return: null
-     * @throws:
-     * @author: zxm
-     * @time: 2024/1/17 16:32
-    */
+     * 当前用户的唯一标识
+     */
     private String token;
 
+    /**
+     * 用户信息
+     */
     private SysUser user;
+
+    /**
+     * 登录时间
+     */
+    private Long loginTime;
+
+    /**
+     * 过期时间
+     */
+    private Long expireTime;
 
     public LoginUser(SysUser user) {
         this.user = user;
@@ -71,6 +79,22 @@ public class LoginUser implements UserDetails {
     @Override
     public String getUsername() {
         return user.getUserName();
+    }
+
+    public Long getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Long loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    public Long getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Long expireTime) {
+        this.expireTime = expireTime;
     }
 
     @JsonIgnore
