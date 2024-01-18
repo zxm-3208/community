@@ -80,7 +80,7 @@ public class TokenServiceImpl implements TokenService {
         loginUser.setToken(userKey);
 
         /**
-         * todo 保存用户信息，刷新令牌
+         * 保存用户信息，刷新令牌
          */
         refreshToken(loginUser);
 
