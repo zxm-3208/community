@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * @Auther: zxm
@@ -34,6 +35,16 @@ public class LoginUser implements UserDetails {
      */
     private Long expireTime;
 
+    /**
+     * 权限列表
+     */
+    private Set<String> permission;
+
+    public LoginUser(SysUser user, Set<String> permission) {
+        this.user = user;
+        this.permission = permission;
+    }
+
     public LoginUser(SysUser user) {
         this.user = user;
     }
@@ -52,6 +63,14 @@ public class LoginUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
+    }
+
+    public Set<String> getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Set<String> permission) {
+        this.permission = permission;
     }
 
     public String getToken() {

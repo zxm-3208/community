@@ -23,4 +23,24 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
     */
     List<String> selectRolePermissionByUserId(Long userId);
 
+    /**
+     * @description: 根据用户id 查询菜单信息
+     * @param userId
+     * @return: List<SysMenu>
+     * @throws: 
+     * @author: zxm
+     * @time: 2024/1/21 20:05
+    */
+    List<SysMenu> selectMenuTreeByUserId(Long userId);
+
+    /**
+     * @description: 用户为admin，查询全部的菜单信息
+     * @param 
+     * @return: List<SysMenu>
+     * @throws: 
+     * @author: zxm
+     * @time: 2024/1/21 17:03
+    */
+    List<SysMenu> selectMenuTreeAll();
+
 }

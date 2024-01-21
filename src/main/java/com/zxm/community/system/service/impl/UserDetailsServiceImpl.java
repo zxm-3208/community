@@ -2,6 +2,7 @@ package com.zxm.community.system.service.impl;
 
 import com.zxm.community.common.core.exception.BaseException;
 import com.zxm.community.common.enums.UserStatus;
+import com.zxm.community.framework.service.SysPermissionService;
 import com.zxm.community.system.domain.LoginUser;
 import com.zxm.community.system.domain.SysUser;
 import com.zxm.community.system.service.SysUserService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @Auther: zxm
@@ -27,6 +29,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private SysUserService sysUserService;
+
+    @Autowired
+    private SysPermissionService sysPermissionService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -46,6 +51,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new BaseException("对不起，您的账号: " + username + "已被停用");
         }
 
-        return new LoginUser(user);
+        return createLoginUser(user);
     }
+
+    public UserDetails createLoginUser(SysUser user){
+        Set<String> menuPermission = sysPermissionService.getMenuPermission(user);
+        return new LoginUser(user, menuPermission);
+    }
+
 }

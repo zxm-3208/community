@@ -5,6 +5,7 @@ import com.zxm.community.common.core.domain.BaseResponse;
 import com.zxm.community.system.domain.SysDept;
 import com.zxm.community.system.service.SysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class SysDeptController extends BaseController {
     private SysDeptService deptService;
 
     @GetMapping("/list")
+    @PreAuthorize("@pe.hasPerms('system:dept:list')")
     public BaseResponse findDeptList(SysDept sysDept){
         List<SysDept> sysDepts = deptService.selectDeptList(sysDept);
         return BaseResponse.success(sysDepts);
