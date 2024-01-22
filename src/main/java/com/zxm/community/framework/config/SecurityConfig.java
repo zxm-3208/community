@@ -14,6 +14,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -43,6 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Autowired
     private CorsFilter corsFilter;
+
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
 
     /**
      * 解决 无法直接注入 AuthenticationManager
@@ -84,11 +88,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // 对于登录login 验证码captchaImage 允许匿名访问
                 .mvcMatchers("/login","/captchaImage").anonymous()
+                .mvcMatchers("/exportExcel/exportCommunityExcel").anonymous()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated();
         http
                 //认证失败处理器
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
+
+        // 登出配置
+        http.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
 
         //添加 JWTFilter
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);

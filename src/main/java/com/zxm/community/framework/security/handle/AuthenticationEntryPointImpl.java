@@ -1,4 +1,4 @@
-package com.zxm.community.framework.security;
+package com.zxm.community.framework.security.handle;
 
 import com.alibaba.fastjson.JSON;
 import com.zxm.community.common.constant.HttpStatus;

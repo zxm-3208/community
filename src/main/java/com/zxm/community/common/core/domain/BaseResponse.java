@@ -20,7 +20,8 @@ public class BaseResponse<T> implements Serializable {
     /**
      * 响应状态码
      */
-    private String code;
+//    private String code;
+    private int code;
 
     /**
      * 响应结果描述
@@ -47,7 +48,7 @@ public class BaseResponse<T> implements Serializable {
     */
     public static <T> BaseResponse<T> success(T data){
         BaseResponse<T> response = new BaseResponse<>();
-        response.setCode(ResultCode.SUCCESS.getCode());
+        response.setCode(Integer.parseInt(ResultCode.SUCCESS.getCode()));
         response.setMsg(ResultCode.SUCCESS.getMessage());
         response.setSuccess(true);
         response.setData(data);
@@ -65,7 +66,7 @@ public class BaseResponse<T> implements Serializable {
     */
     public static <T> BaseResponse<T> fail(String message){
         BaseResponse<T> response = new BaseResponse<>();
-        response.setCode(ResultCode.ERROR.getCode());
+        response.setCode(Integer.parseInt(ResultCode.ERROR.getCode()));
         response.setMsg(message);
         return response;
     }
@@ -81,7 +82,7 @@ public class BaseResponse<T> implements Serializable {
     */
     public static <T> BaseResponse<T> fail(String code, String message){
         BaseResponse<T> response = new BaseResponse<>();
-        response.setCode(code);
+        response.setCode(Integer.parseInt(code));
         response.setMsg(message);
         return response;
     }
@@ -98,7 +99,7 @@ public class BaseResponse<T> implements Serializable {
     */
     public static <T> BaseResponse<T> fail(String code, String message, boolean success){
         BaseResponse<T> response = new BaseResponse<>();
-        response.setCode(code);
+        response.setCode(Integer.parseInt(code));
         response.setMsg(message);
         response.setSuccess(success);
         return response;
@@ -112,11 +113,11 @@ public class BaseResponse<T> implements Serializable {
         this.success = success;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
